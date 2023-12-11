@@ -197,7 +197,7 @@ INSERT INTO pending_tasks (id, hour_create, hour_done, pending_task, task_done, 
 (2, '2021-08-08 14:57:42', '2021-08-08 14:57:42', 'Tarea 2', 0, 2, 2, 'Observacion 2');
 
 -- insertar datos en tabla vehicle_logs
-INSERT INTO Vehicle_Logs (id, departure_time, entry_time, destination, departure_km, entry_km, mission, observation, GuardsOut_id, GuardsIn_id, Vehicle_id, Driver_id) VALUES 
+INSERT INTO Vehicle_Logs (id, departure_time, entry_time, destination, departure_km, entry_km, mission, observation, GuardsOut_id, GuardsIn_id, Vehicle_id, Driver_id) VALUES
 (1, '2021-08-07 14:57:42', '2021-08-08 14:57:42', 'Destino 1', 123, 456, 'Mision 1', 'Observacion 1', 1, 2, 1, 1),
 (2, '2021-08-08 14:57:42', '2021-08-09 14:57:42', 'Destino 2', 2222, 5555, 'Mision 2', 'Observacion 2', 2, 2, 2, 2);
 
