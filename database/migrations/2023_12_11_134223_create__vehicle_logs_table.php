@@ -24,6 +24,7 @@ return new class extends Migration
             $table->int('Vehicle_id');
             $table->int('Driver_id');
             $table->foreign('GuardsOut_id')->references('id')->on('guards');
+            $table->foreign('GuardsIn_id')->references('id')->on('guards');
         });
     }
     /**
