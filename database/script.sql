@@ -1,6 +1,3 @@
--- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2023-08-08 14:57:42.488
-
 -- tables
 -- Table: Drivers
 CREATE TABLE Drivers (
