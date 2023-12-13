@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('datedeparture_time');
             $table->string('entry_time');
-            $table->string('destination');
             $table->string('departure_km');
             $table->string('entry_km');
             $table->string('mission');
@@ -27,7 +26,6 @@ return new class extends Migration
             $table->foreign('GuardsOut_id')->references('id')->on('guards');
         });
     }
-
     /**
      * Reverse the migrations.
      */
