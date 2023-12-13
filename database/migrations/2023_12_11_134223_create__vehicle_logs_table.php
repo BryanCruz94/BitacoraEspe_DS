@@ -19,12 +19,12 @@ return new class extends Migration
             $table->string('entry_km');
             $table->string('mission');
             $table->string('observation');
-            /*$table->foreignId('GuardsOut_id');
+            $table->foreignId('GuardsOut_id');
             $table->foreignId('GuardsIn_id');
             $table->foreignId('Vehicle_id');
             $table->foreignId('Driver_id');
-            $table->foreign('GuardsOut_id')->references('id')->on('guards');
-            $table->foreign('GuardsIn_id')->references('id')->on('guards')*/
+            $table->foreign('GuardsOut_id')->references('id')->on('users');
+            $table->foreign('GuardsIn_id')->references('id')->on('users');
         });
     }
     /**
