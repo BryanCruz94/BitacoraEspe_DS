@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('novelty');
             $table->int('Guard_id');
             $table->timestamps();
+            //hi
         });
     }
 
