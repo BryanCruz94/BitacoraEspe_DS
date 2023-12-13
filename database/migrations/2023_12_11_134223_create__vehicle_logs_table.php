@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('_vehicle_logs', function (Blueprint $table) {
             $table->id();
-            $table->string('datedeparture_time');
+            $table->string('departure_time');
+            $table->string('destination');
             $table->string('entry_time');
             $table->string('departure_km');
             $table->string('entry_km');
