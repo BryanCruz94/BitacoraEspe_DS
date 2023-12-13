@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->dateTime('hour');
             $table->string('novelty');
-            $table->int('Guard_id');
+            $table->integer('Guard_id');
             $table->timestamps();
             //hi
         });

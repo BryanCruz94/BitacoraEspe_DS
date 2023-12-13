@@ -16,8 +16,8 @@ class UsersTableSeeder extends Seeder
     {
         $users = [
             [
-                'name' => 'Dannyel Alulema',
-                'email' => 'daalulema2@espe.edu.ec',
+                'name' => 'Melany Caicedo',
+                'email' => 'mkcaicedo@espe.edu.ec',
                 'email_verified_at' => now(),
                 'password' => Hash::make('password'),
                 'created_at' => now(),
@@ -32,8 +32,8 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => now()
             ],
             [
-                'name' => 'Jeyner Manzaba',
-                'email' => 'jomanzaba@espe.edu.ec',
+                'name' => 'Leonardo Flores',
+                'email' => 'ldflores9@espe.edu.ec',
                 'email_verified_at' => now(),
                 'password' => Hash::make('password'),
                 'created_at' => now(),

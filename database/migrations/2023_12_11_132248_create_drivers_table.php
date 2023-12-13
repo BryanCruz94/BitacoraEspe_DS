@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('drivers', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('rank_id');
             $table->string('identification_card');
             $table->string('names');
             $table->string('last_names');
             $table->string('phone');
             $table->string('blood_type');
-            $table->int('rank_id');
             $table->string('license_number');
             $table->string('img_url');
             $table->foreign('rank_id')->references('id')->on('ranks');
