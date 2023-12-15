@@ -200,11 +200,15 @@ INSERT INTO Vehicle_Logs (id, departure_time, entry_time, destination, departure
 
 
 
--- ******** CREACIÓN DE VISTAS *********
+-- *** CREACIÓN DE VISTAS ****
 -- Vista novedades
 create view View_Novelties As
+<<<<<<< HEAD
 select N.novelty, N.hour, concat(G.names, ' ',G.last_names) as Guard,
 N.deleted_at
+=======
+select N.novelty, N.hour, concat(G.names, ' ',G.last_names) as Guard
+>>>>>>> cf82006d98ab4fd814933dd3f883a111a2074293
 from novelties as N
 inner join  users as G on N.Guard_id = G.id
 order by 2 desc
@@ -212,7 +216,12 @@ limit 50;
 
 -- Vista Tareas pendientes
 create view View_pedding_task AS
+<<<<<<< HEAD
 select pt.hour_create, pt.pending_task, concat(g.names, ' ',g.last_names) as guardCreate from pending_tasks as PT
+=======
+select pt.hour_create, pt.pending_task, concat(g.names, ' ',g.last_names) as guardCreate 
+from pending_tasks as PT
+>>>>>>> cf82006d98ab4fd814933dd3f883a111a2074293
 inner join users as G on G.id=pt.userCreate_id
 where pt.task_done = 0
 order by 1;
@@ -247,12 +256,10 @@ limit 50;
 create view View_vehiclesOut as
 select V.plate, V.description, concat(R.name,'. ',D.names,' ',D.last_names) as driver,
        BV.departure_time, BV.destination, BV.mission, concat(GO.names, ' ',GO.last_names) as guardOut
-from vehicle_logs as BV
+from _vehicle_logs as BV
 inner join vehicles as V on BV.Vehicle_id = V.id
 inner join drivers D on BV.Driver_id = D.id
 inner join ranks r on D.rank_id = r.id
-inner join guards as GO on GO.id=BV.GuardsOut_id
+inner join users as GO on GO.id=BV.GuardsOut_id
 where V.in_university = 0
 order by 3;
-
-
