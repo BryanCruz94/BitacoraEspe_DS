@@ -46,6 +46,16 @@ Route::get('/vehicles', function () {
     return view('vehicles');
 })->middleware('auth');
 
+
+Route::get('/adminVehicles', function () {
+    return view('adminVehicles');
+})->name("adminVehicles.index");
+
+Route::get('/adminDrivers', function () {
+    return view('adminDrivers');
+})->name("adminDrivers.index");
+
+
 Route::get('/reports', function () {
     return view('reports');
 })->middleware('auth');
