@@ -70,7 +70,7 @@
                                     <td class="text-center">
                                         <form action="#" method="POST">
                                             @csrf
-                                            <button class="btn btn-secondary btn-sm">
+                                            <button class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modalVehInAc">
                                                 <span class="fas fa-user-edit"></span>
                                             </button>
                                         </form>
@@ -153,6 +153,72 @@
             </div>
         </div>
     </div>
+
+
+    {{-- MODAL PARA ACTUALIZAR INGRESO VEHICULAR --}}
+    <div class="modal" tabindex="-1" id="modalVehInAc">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">MODIFICAR REGISTRO VEHICULAR</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('adminVehicles.update', isset($datosEditar) ? $datosEditar->id : '') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-body">
+                        <div id="vehOutForm" class="row mt-3" style="">
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="plate">Placa: </label>
+                                    {{-- CREAR UN INPUT SELECT CON 6 OPCIONES --}}
+                                    <select name="plate" id="plate" class="form-control" required>
+                                        <option value="1" {{ isset($datosEditar) && $datosEditar->plate == 1 ? 'selected' : '' }}>PEC-7720</option>
+                                        <option value="2" {{ isset($datosEditar) && $datosEditar->plate == 2 ? 'selected' : '' }}>PEC-7721</option>
+                                        <option value="3" {{ isset($datosEditar) && $datosEditar->plate == 3 ? 'selected' : '' }}>PEC-7722</option>
+                                        <option value="4" {{ isset($datosEditar) && $datosEditar->plate == 4 ? 'selected' : '' }}>PEC-7723</option>
+                                        <option value="5" {{ isset($datosEditar) && $datosEditar->plate == 5 ? 'selected' : '' }}>PEC-7724</option>
+                                        <option value="6" {{ isset($datosEditar) && $datosEditar->plate == 6 ? 'selected' : '' }}>PEC-7725</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="description">Descripción: </label>
+                                    <input type="text" name="description" id="description" class="form-control" required value="{{ isset($datosEditar) ? $datosEditar->description : '' }}">
+                                </div>
+                            </div>
+
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="in_university">Lugar: </label>
+                                    <input type="number" name="in_university" id="in_university" class="form-control" required value="{{ isset($datosEditar) ? $datosEditar->in_university : '' }}">
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="img">Fotografía:</label>
+                                    <img src="{{ isset($datosEditar) ? Storage::url($datosEditar->img_url) : '' }}" alt="fotito" width="100">
+                                    <input type="file" name="img" id="img" class="form-control" rows="3" required value="{{ isset($datosEditar) ? $datosEditar->img_url : '' }}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
+                        <button type="submit" id="btnIngreso" style="" class="btn btn-success">ACTUALIZAR</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
 
 @stop
 

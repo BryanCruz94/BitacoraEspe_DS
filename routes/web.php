@@ -44,12 +44,15 @@ Route::get('/pendings', [PendingTaskController::class,'index'])->middleware('aut
 //CREAR NUEVA CONSIGNA
 Route::post('/pendings/newPending', [PendingTaskController::class,'store'])->middleware('auth')->name("pendding.store");
 
-
+// ****************** BITÁCORA VEHÍCULOS ******************
 Route::get('/vehicles', function () {
     return view('vehicles');
 })->middleware('auth');
 
-//********** */
+//Route::resource('admin/vehicles', VehicleController::class)->names('vehicles'); //RECURSO DE L
+Route::post('/store',[VehicleController::class,'store'])
+-> name ('vehicle.store');
+
 Route::get('/adminVehicles', function () {
     return view('adminVehicles');
 })->name("adminVehicles.index");
@@ -57,17 +60,22 @@ Route::get('/adminVehicles', function () {
 /*Route::get('/adminVehicles',[VehicleController::class,'index'])
 -> name ('vehicle.index');*/
 
-Route::post('/store',[VehicleController::class,'store'])
--> name ('vehicle.store');
+Route::post('/edit/{id}', [VehicleController::class, 'edit'])->middleware('auth')
+-> name ('adminVehicles.edit');
+//update para actualizar el relajo ese
+/*Route::post('/update/{id}', [VehicleController::class, 'update'])->middleware('auth')
+->name('adminVehicles.update');*/
+Route::post('adminVehicles/{id}', 'VehicleController@update')->name('adminVehicles.update');
 
+Route::delete('/destroy/{id}', [VehicleController::class, 'destroy'])->middleware('auth')->name('adminVehicles.destroy');
 
+//Route::post('adminVehicles/{id}', 'TuControlador@update')->name('adminVehicles.update');
 //Route::resource('/adminVehicles', AdminVehiclesController::class);
 
 
-/*Route::post('/edit/{id}', [AdminVehicles::class, 'edit'])
--> name ('adminVehicles.edit');*/
 
-//******************** */
+
+//******************************************************************* */
 
 Route::get('/adminDrivers', function () {
     return view('adminDrivers');
