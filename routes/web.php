@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\AdminVehiclesController;
 use App\Http\Controllers\NoveltyController;
 use App\Http\Controllers\PendingTaskController;
+use App\Http\Controllers\VehicleController;
+use App\Models\AdminVehicles;
 //use App\Models\Novelty;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -46,19 +49,38 @@ Route::get('/vehicles', function () {
     return view('vehicles');
 })->middleware('auth');
 
-
+//********** */
 Route::get('/adminVehicles', function () {
     return view('adminVehicles');
 })->name("adminVehicles.index");
+
+/*Route::get('/adminVehicles',[VehicleController::class,'index'])
+-> name ('vehicle.index');*/
+
+Route::post('/store',[VehicleController::class,'store'])
+-> name ('vehicle.store');
+
+
+//Route::resource('/adminVehicles', AdminVehiclesController::class);
+
+
+/*Route::post('/edit/{id}', [AdminVehicles::class, 'edit'])
+-> name ('adminVehicles.edit');*/
+
+//******************** */
 
 Route::get('/adminDrivers', function () {
     return view('adminDrivers');
 })->name("adminDrivers.index");
 
 
+
+
 Route::get('/reports', function () {
     return view('reports');
 })->middleware('auth');
+
+
 
 
 

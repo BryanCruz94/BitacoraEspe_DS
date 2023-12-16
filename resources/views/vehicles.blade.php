@@ -247,7 +247,7 @@
                                 <div class="form-group">
                                     <label for="mileageOut">KM Salida: </label>
                                     <input type="text" name="mileageOut" id="mileageOut" class="form-control">
-                                    
+
                                 </div>
                             </div>
 
@@ -303,7 +303,7 @@
                                 <div class="form-group">
                                     <label for="mileageIn">KM Ingreso: </label>
                                     <input type="text" name="mileageIn" id="mileageIn" class="form-control">
-                                    
+
                                 </div>
                             </div>
 
