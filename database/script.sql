@@ -204,11 +204,15 @@ INSERT INTO Vehicle_Logs (id, departure_time, entry_time, destination, departure
 -- Vista novedades
 create view View_Novelties As
 <<<<<<< HEAD
+select N.novelty, N.hour, concat(G.names, ' ',G.last_names) as Guard
+=======
+<<<<<<< HEAD
 select N.novelty, N.hour, concat(G.names, ' ',G.last_names) as Guard,
 N.deleted_at
 =======
 select N.novelty, N.hour, concat(G.names, ' ',G.last_names) as Guard
 >>>>>>> cf82006d98ab4fd814933dd3f883a111a2074293
+>>>>>>> 414d46ed96f957e182878828edd9fa2301a911de
 from novelties as N
 inner join  users as G on N.Guard_id = G.id
 order by 2 desc
@@ -217,11 +221,16 @@ limit 50;
 -- Vista Tareas pendientes
 create view View_pedding_task AS
 <<<<<<< HEAD
+select pt.hour_create, pt.pending_task, concat(g.names, ' ',g.last_names) as guardCreate 
+from pending_tasks as PT
+=======
+<<<<<<< HEAD
 select pt.hour_create, pt.pending_task, concat(g.names, ' ',g.last_names) as guardCreate from pending_tasks as PT
 =======
 select pt.hour_create, pt.pending_task, concat(g.names, ' ',g.last_names) as guardCreate 
 from pending_tasks as PT
 >>>>>>> cf82006d98ab4fd814933dd3f883a111a2074293
+>>>>>>> 414d46ed96f957e182878828edd9fa2301a911de
 inner join users as G on G.id=pt.userCreate_id
 where pt.task_done = 0
 order by 1;
