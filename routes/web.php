@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\AdminVehiclesController;
 use App\Http\Controllers\NoveltyController;
 use App\Http\Controllers\PendingTaskController;
+use App\Http\Controllers\VehicleController;
+use App\Models\AdminVehicles;
 //use App\Models\Novelty;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -41,24 +44,51 @@ Route::get('/pendings', [PendingTaskController::class,'index'])->middleware('aut
 //CREAR NUEVA CONSIGNA
 Route::post('/pendings/newPending', [PendingTaskController::class,'store'])->middleware('auth')->name("pendding.store");
 
-
+// ****************** BITÁCORA VEHÍCULOS ******************
 Route::get('/vehicles', function () {
     return view('vehicles');
 })->middleware('auth');
 
+//Route::resource('admin/vehicles', VehicleController::class)->names('vehicles'); //RECURSO DE L
+Route::post('/store',[VehicleController::class,'store'])
+-> name ('vehicle.store');
 
 Route::get('/adminVehicles', function () {
     return view('adminVehicles');
 })->name("adminVehicles.index");
+
+/*Route::get('/adminVehicles',[VehicleController::class,'index'])
+-> name ('vehicle.index');*/
+
+Route::post('/edit/{id}', [VehicleController::class, 'edit'])->middleware('auth')
+-> name ('adminVehicles.edit');
+//update para actualizar el relajo ese
+/*Route::post('/update/{id}', [VehicleController::class, 'update'])->middleware('auth')
+->name('adminVehicles.update');*/
+Route::post('adminVehicles/{id}', 'VehicleController@update')->name('adminVehicles.update');
+
+Route::delete('/destroy/{id}', [VehicleController::class, 'destroy'])->middleware('auth')->name('adminVehicles.destroy');
+
+//Route::post('adminVehicles/{id}', 'TuControlador@update')->name('adminVehicles.update');
+//Route::resource('/adminVehicles', AdminVehiclesController::class);
+
+
+
+
+//******************************************************************* */
 
 Route::get('/adminDrivers', function () {
     return view('adminDrivers');
 })->name("adminDrivers.index");
 
 
-Route::get('/admin', function () {
-    return view('admin');
+
+
+Route::get('/reports', function () {
+    return view('reports');
 })->middleware('auth');
+
+
 
 
 

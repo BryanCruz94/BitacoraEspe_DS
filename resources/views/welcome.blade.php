@@ -8,7 +8,7 @@
         <h1>BITÁCORA DE NOVEDADES UFA ESPE-SD</h1>
         </div>
     </div>
-    
+
 @stop
 
 @section('content')
