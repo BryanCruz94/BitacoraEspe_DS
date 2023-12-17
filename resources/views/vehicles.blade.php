@@ -247,7 +247,7 @@
                                 <div class="form-group">
                                     <label for="mileageOut">KM Salida: </label>
                                     <input type="text" name="mileageOut" id="mileageOut" class="form-control">
-                                    
+
                                 </div>
                             </div>
 
@@ -290,11 +290,7 @@
                                     {{-- CREAR UN INPUT SELECT CON 6 OPCIONES --}}
                                     <select name="plateIn" id="plateIn" class="form-control">
                                         <option value="1">PEC-7720</option>
-                                        <option value="2">PEC-7721</option>
-                                        <option value="3">PEC-7722</option>
-                                        <option value="4">PEC-7723</option>
-                                        <option value="5">PEC-7724</option>
-                                        <option value="6">PEC-7725</option>
+                                        
                                     </select>
                                 </div>
                             </div>
@@ -303,7 +299,7 @@
                                 <div class="form-group">
                                     <label for="mileageIn">KM Ingreso: </label>
                                     <input type="text" name="mileageIn" id="mileageIn" class="form-control">
-                                    
+
                                 </div>
                             </div>
 

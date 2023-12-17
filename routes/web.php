@@ -56,8 +56,8 @@ Route::get('/adminDrivers', function () {
 })->name("adminDrivers.index");
 
 
-Route::get('/reports', function () {
-    return view('reports');
+Route::get('/admin', function () {
+    return view('admin');
 })->middleware('auth');
 
 
@@ -67,6 +67,6 @@ Route::get('/reports', function () {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
 
-Auth::routes();
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
