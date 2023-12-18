@@ -37,7 +37,7 @@
                     <div class="card-tools" style=" ">
                     </div>
                 </div>
-
+{{$vehicleLog}}
                 <div class="card-body table-responsive pl-2 pr-2">
                     <table id="movVehiclesTable" class="table table-hover text-nowrap">
                         <thead>
@@ -290,7 +290,7 @@
                                     {{-- CREAR UN INPUT SELECT CON 6 OPCIONES --}}
                                     <select name="plateIn" id="plateIn" class="form-control">
                                         <option value="1">PEC-7720</option>
-                                        
+
                                     </select>
                                 </div>
                             </div>

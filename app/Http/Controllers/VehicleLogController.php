@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class VehicleLogController extends Controller
@@ -11,7 +11,9 @@ class VehicleLogController extends Controller
      */
     public function index()
     {
-        //
+        $vehicleLog = DB::table('view_vehicleslog')->get();
+        return view('vehicles', compact('vehicleLog')); 
+
     }
 
     /**

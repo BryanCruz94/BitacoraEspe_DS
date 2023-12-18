@@ -55,8 +55,13 @@
                                 </td>
                                 <td class="text-center">
 
-                                    <button class="btn btn-danger" data-toggle="modal"
-                                        data-target="#modalPenddingDone">REALIZADA</button>
+                                    <form action="{{route ('pendings.editDone', $item->id)}}" method="POST">
+                                        @csrf
+                                        <input type="submit" class="btn btn-danger" data-toggle="modal"
+                                         data-target="#modalPenddingDone" value= "REALIZADA"></input>
+
+                                    </form>
+
 
                                 </td>
 
@@ -82,45 +87,44 @@
                 <table id="donePendingsTable" class="table table-hover text-nowrap">
                     <thead>
                         <tr>
-                            <th class="text-center">ORD</th>
-                            <th class="text-center">DESCRIPCIÓN</th>
-                            <th class="text-center">HORA ASIGNACIÓN</th>
-                            <th class="text-center">HORA REALIZADO</th>
-                            <th class="text-center">REMITENTE</th>
-                            <th class="text-center">REALIZADO POR</th>
-                            <th class="text-center">NOVEDADES</th>
+                            <th class="align-middle text-wrap">ORD</th>
+                            <th class="align-middle text-wrap" style="min-width: 100px; max-width:300px">DESCRIPCIÓN</th>
+                            <th class="align-middle text-wrap" style="min-width: 100px; max-width:300px">HORA ASIGNACIÓN</th>
+                            <th class="align-middle text-wrap" style="min-width: 100px; max-width:300px">HORA REALIZADO</th>
+                            <th class="align-middle text-wrap" style="min-width: 100px; max-width:300px">REMITENTE</th>
+                            <th class="align-middle text-wrap" style="min-width: 100px; max-width:300px">REALIZADO POR</th>
+                            <th class="align-middle text-wrap" style="min-width: 100px; max-width:300px">NOVEDADES</th>
 
                         </tr>
                     </thead>
                     <tbody>
                         <?php $ord = 0; ?>
-                        @foreach ($penddingsDone as $item2 )
-                        <tr>
-                            <td class="text-center">
-                                {{ ++$ord }}
-                            </td>
-                            <td>
-                                {{ $item2->pending_task }}
-                            </td>
-                            <td class="text-center">
-                                {{ $item2->hour_create }}
-                            </td>  
-                            <td class="text-center">
-                                {{ $item2->hour_done }}
-                            </td>
-                            <td class="text-center">
-                                {{ $item2->guardCreate }}
-                            </td>
-                            <td class="text-center">
-                                {{ $item2->guardDone }}
-                            </td>
-                            <td>
-                                {{ $item2->observations }}
-                            </td>
-                        </tr>
-                            
+                        @foreach ($penddingsDone as $item2)
+                            <tr>
+                                <td class="align-middle text-wrap" >
+                                    {{ ++$ord }}
+                                </td>
+                                <td>
+                                    {{ $item2->pending_task }}
+                                </td>
+                                <td class="align-middle text-wrap" style="min-width: 100px; max-width:300px">
+                                    {{ $item2->hour_create }}
+                                </td>
+                                <td class="align-middle text-wrap" style="min-width: 100px; max-width:300px">
+                                    {{ $item2->hour_done }}
+                                </td>
+                                <td class="align-middle text-wrap" style="min-width: 100px; max-width:300px">
+                                    {{ $item2->guardCreate }}
+                                </td>
+                                <td class="align-middle text-wrap" style="min-width: 100px; max-width:300px">
+                                    {{ $item2->guardDone }}
+                                </td>
+                                <td class="align-middle text-wrap" style="min-width: 100px; max-width:300px">
+                                    {{ $item2->observations }}
+                                </td>
+                            </tr>
                         @endforeach
-                        
+
                     </tbody>
                 </table>
 
@@ -163,39 +167,7 @@
         </div>
     </div>
 
-    {{-- MODAL PARA REGISTRAR UNA CONSIGNA REALIZADA --}}
-    <div class="modal" tabindex="-1" id="modalPenddingDone">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header bg-danger">
-                    <h5 class="modal-title">CONSIGNA REALIZADA</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="#" method="POST">
-                    @csrf
-                    <div class="modal-body">
 
-                        <div id="modificarRegistro" class="row mt-3" style="">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="penddingDone">Indíque si tuvo alguna novedad realizando la
-                                        consinga:</label>
-                                    <textarea name="penddingDone" id="penddingDone" class="form-control" rows="3"></textarea>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
-                        <button type="submit" id="btnIngreso" style="" class="btn btn-success">GUARDAR</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 
 @stop
 
@@ -205,6 +177,9 @@
 
 @section('js')
     <script>
+
+
+
         donePendingsTable
         $(document).ready(function() {
             $('#donePendingsTable').DataTable({

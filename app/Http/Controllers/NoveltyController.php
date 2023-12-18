@@ -36,7 +36,7 @@ class NoveltyController extends Controller
 
         $noveltie -> hour = Carbon::now()->setTimezone('America/Guayaquil');
         $noveltie -> novelty = $request -> novelty;
-        $noveltie -> Guard_id = 1;
+        $noveltie -> Guard_id = auth()->user()->id;
 
         $noveltie -> save();
         return redirect()->route('binnacle.index');

@@ -14,7 +14,9 @@ class VehicleController extends Controller
     {
         $datos = Vehicle::orderBy('plate')->get();
 
-        return view('adminVehicles.adminVehicles', compact('datos'));
+        $nombreGuarda = auth()->user()->name;
+
+        return view('adminVehicles.adminVehicles', compact('datos', 'nombreGuarda'));
     }
 
 
