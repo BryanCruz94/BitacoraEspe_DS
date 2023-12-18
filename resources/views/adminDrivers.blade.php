@@ -13,7 +13,86 @@
 
 @section('content')
 
-hola mundo
+<div class="row">
+        <div class="col">
+                <div class="card-body">
+                        <div class="row">
+                                <div class="col-sm-12">
+                                        @if ($mensaje = Session::get('success'))
+                                        <div class="alert alert-success" roles="alert">
+                                                {{$mensaje}}
+
+                                        </div>
+                                        @endif
+                                </div>
+                        </div>
+
+                </div>
+                <h5>Listado de conductores</h5>
+
+                <p>
+                        <a href="{{route('adminDriver.create')}}" class="btn btn-primary">Agregar Persona</a>
+                </p>
+                <table class="table table-striped table-dark">
+                        <thead>
+                                <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Rango </th>
+                                        <th scope="col">Identificación </th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Telefono</th>
+                                        <th scope="col">Tipo de sangre</th>
+                                        <th scope="col">Licencia</th>
+                                        <th scope="col">Imagen</th>
+                                        <th scope="col">Editar</th>
+                                        <th scope="col">Eliminar</th>
+                                </tr>
+                        </thead>
+                        @php
+                        $i=1
+                        @endphp
+                        <tbody>
+
+                                @foreach($datos as $item)
+                                <tr>
+                                        <th scope="row">{{$i++}}</th>
+                                        <td>{{$item->rank_id}}</td>
+                                        <td>{{$item->identification_card}}</td>
+                                        <td>{{$item->names." ".$item->last_names}}</td>
+                                        <td>{{$item->phone}}</td>
+                                        <td>{{$item->blood_type}}</td>
+                                        <td>{{$item->license_number}}</td>
+                                        <td><img src="{{ Storage::url($item->img_url) }}" alt="user" width="70px" height="70px"></td>
+                                        <td>
+                                                <form action="{{route('adminDrivers.edit', $item->id)}}" method="post">
+                                                        @csrf
+                                                        <button class="btn btn-warning btn-small">
+                                                                <span class="fas fa-user-edit"></span>
+                                                        </button>
+                                                </form>
+                                        </td>
+                                        <td>
+                                                <form action="{{route('adminDrivers.destroy', $item->id)}}" method="post" onsubmit="return confirmarEli()">
+                                                        @csrf
+                                                        <button class="btn btn-danger btn-small">
+                                                                <span class="fas fa-user-times"></span>
+                                                        </button>
+                                                </form>
+                                        </td>
+
+                                </tr>
+                                @endforeach
+                                <script>
+                                        function confirmarEli(){
+                                                return confirm('¿Estás seguro que quieres eliminar este registro?')
+                                        }
+                                </script>
+                        </tbody>
+                </table>
+        </div>
+
+</div> 
+
 
 @stop
 
