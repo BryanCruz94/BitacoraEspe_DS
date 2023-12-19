@@ -4,11 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class VehicleLog extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $fillable=[
         "departure_time",
@@ -22,8 +21,6 @@ class VehicleLog extends Model
         "GuardsIn_id",
         "Vehicle_id",
         "Driver_id",
-        "created_by",
-        "updated_by",
-        "deleted_by"
+
     ];
 }

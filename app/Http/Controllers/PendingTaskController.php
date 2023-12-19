@@ -45,7 +45,7 @@ class PendingTaskController extends Controller
 
         $pennding->save();
         return redirect()->route('pendding.index');
-
+ 
 
     }
 

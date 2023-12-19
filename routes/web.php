@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminDriversController;
+use App\Http\Controllers\DriverController;
 use App\Http\Controllers\NoveltyController;
 use App\Http\Controllers\PendingTaskController;
 use App\Http\Controllers\VehicleController;
@@ -36,7 +38,6 @@ Route::get('/binnacle', [NoveltyController::class,'index'])->middleware('auth')-
 Route::post('/binnacle/newBinnacle', [NoveltyController::class,'store'])->middleware('auth')->name("binacle.store");
 
 // ****************** BITÁCORA CONSIGNAS ******************
-//RUTA PARA MOSTRAR CONSIGNAS PENDIENTES
 Route::get('/pendings', [PendingTaskController::class,'index'])->middleware('auth')->name("pendding.index");
 Route::post('/pendings/newPending', [PendingTaskController::class,'store'])->middleware('auth')->name("pendding.store");
 Route::post('/pendings/edit/{id}', [PendingTaskController::class, 'edit'])->middleware('auth')-> name ('pendings.editDone');
@@ -45,7 +46,8 @@ Route::post('/pendings/update/{id}', [PendingTaskController::class, 'update'])->
 
 // ****************** BITÁCORA VEHÍCULOS ******************
 Route::get('/vehicles', [VehicleLogController::class,'index'])->middleware('auth')->name("vehiclesLog.index");
-
+Route::post('/vehicles/newVehicleLog', [VehicleLogController::class,'store'])->middleware('auth')->name("vehiclesLog.store");
+Route::post('/vehicles/updateVehicleLog', [VehicleLogController::class,'update'])->middleware('auth')->name("vehiclesLog.update");
 
 
 
@@ -53,24 +55,27 @@ Route::get('/vehicles', [VehicleLogController::class,'index'])->middleware('auth
 // ****************** AQUI EMPIEZA ADMIN VEHICULOS ******************
 Route::get('/adminVehicles',[VehicleController::class,'index'])-> name ('vehicle.index');
 
-Route::post('/store',[VehicleController::class,'store'])-> name ('vehicle.store');
-
+Route::post('/store',[VehicleController::class,'store'])->middleware('auth')-> name ('vehicle.store');
 Route::post('/adminVehicles/edit/{id}', [VehicleController::class, 'edit'])->middleware('auth')-> name ('adminVehicles.edit');
 Route::post('/adminVehicles/update/{id}', [VehicleController::class, 'update'])->middleware('auth')->name('adminVehicles.update');
 Route::post('/adminVehicles/delete/{id}', [VehicleController::class, 'delete'])->middleware('auth')->name('adminVehicles.delete');
 Route::post('/adminVehicles/destroy/{id}', [VehicleController::class, 'destroy'])->middleware('auth')->name('adminVehicles.destroy');
 
-
 // ****************** AQUI TERMINA ADMIN VEHICULOS ******************
 //******************************************************************* */
 
 
+
+
 //******************************************************************* */
 // ****************** AQUI EMPIEZA ADMIN DRIVERS ******************
-Route::get('/adminDrivers', function () {
-    return view('adminDrivers');})->name("adminDrivers.index");
-
-
+Route::get('/adminDrivers',[AdminDriversController::class,'index'])->middleware('auth')->name ('drivers.index');
+Route::get('/createDrivers',[AdminDriversController::class,'create'])->middleware('auth')-> name ('drivers.create');
+Route::post('/storeDrivers',[AdminDriversController::class,'store'])->middleware('auth')-> name ('drivers.store');
+Route::post('/updateDrivers/{id}',[AdminDriversController::class,'update'])->middleware('auth')-> name ('drivers.update');
+Route::post('/editDrivers/{id}',[AdminDriversController::class,'edit'])->middleware('auth')-> name ('drivers.edit');
+Route::post('/deleteDrivers/{id}',[AdminDriversController::class,'delete'])->middleware('auth')-> name ('drivers.delete');
+Route::post('/destroyDrivers/{id}',[AdminDriversController::class,'destroy'])->middleware('auth')-> name ('drivers.destroy');
 
 // ****************** AQUI TERMINA ADMIN DRIVERS ******************
 //******************************************************************* */

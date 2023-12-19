@@ -9,7 +9,7 @@ class Driver extends Model
 {
     use HasFactory;
 
-    
+
     protected $fillable=[
         "identification_card",
         "names",
@@ -18,4 +18,10 @@ class Driver extends Model
         "blood_type",
         "rank_id",
     ];
+
+    public function rank(){
+        return $this->belongsTo(Rank::class);
+    }	
 }
+
+

@@ -145,7 +145,7 @@
                     </button>
                 </div>
                 <form action="{{ route('pendding.store') }}" method="POST">
-                    @csrf
+                    @csrf 
                     <div class="modal-body">
 
                         <div id="modificarRegistro" class="row mt-3" style="">

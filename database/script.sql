@@ -173,8 +173,8 @@ INSERT INTO Ranks (id, name, code) VALUES (1, 'T.P', 1),
 (16, 'GRAB',16);
 
 -- insertar datos en la tabla Drivers
-INSERT INTO Drivers (id, identification_card, names, last_names, phone, blood_type, rank_id) VALUES (1, '1718324765', 'BRYAN', 'CRUZ', '0959113863', 'A+', 11),
-(2, '1003383613', 'Pedro', 'Perez', '1234567891', 'O+', 2);
+INSERT INTO `drivers` (`rank_id`, `identification_card`, `names`, `last_names`, `phone`, `blood_type`, `license_type`, `img_url`) VALUES ('3', '1718324765', 'Steven', 'Quezada', '0959113863', 'A+', 'A', 'ddd');
+
 
 --INSERTAR DATOS EN LA TABLA VEHICLES
 INSERT INTO Vehicles (id, description, plate, in_university) VALUES (1, 'CAMIONETA CHEVROLET', 'ABC-1234', 1),
@@ -221,13 +221,13 @@ limit 50;
 -- Vista Tareas pendientes
 create view View_pedding_task AS
 <<<<<<< HEAD
-select pt.hour_create, pt.pending_task, concat(g.names, ' ',g.last_names) as guardCreate 
+select pt.hour_create, pt.pending_task, concat(g.names, ' ',g.last_names) as guardCreate
 from pending_tasks as PT
 =======
 <<<<<<< HEAD
 select pt.hour_create, pt.pending_task, concat(g.names, ' ',g.last_names) as guardCreate from pending_tasks as PT
 =======
-select pt.hour_create, pt.pending_task, concat(g.names, ' ',g.last_names) as guardCreate 
+select pt.hour_create, pt.pending_task, concat(g.names, ' ',g.last_names) as guardCreate
 from pending_tasks as PT
 >>>>>>> cf82006d98ab4fd814933dd3f883a111a2074293
 >>>>>>> 414d46ed96f957e182878828edd9fa2301a911de

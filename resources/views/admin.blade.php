@@ -13,24 +13,34 @@
 @stop
 
 @section('content')
-<div class="row justify-content-center">
-    <div class="col-md-6 text-center mb-3">
-        <a href="{{ route('vehicle.index') }}" class="btn btn-primary btn-lg d-flex flex-column align-items-center" style=" width: 100%;">
-            <img src="https://images.unsplash.com/photo-1620059116993-398c21ce8406?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="Imagen Vehicular" style="height: 190px;">
-            Administración Vehicular
-        </a>
+
+@if(auth()->user()->is_admin == 1)
+    <div class="row justify-content-center">
+        <div class="col-md-6 mb-3">
+            <a href="{{ route('vehicle.index') }}" class="btn btn-primary btn-lg d-flex flex-column align-items-center" style="width: 100%;">
+                <img src="https://images.unsplash.com/photo-1620059116993-398c21ce8406?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Imagen Vehicular" style="height: 190px;">
+                Administración Vehicular
+            </a>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <a href="{{ route('drivers.index') }}" class="btn btn-danger btn-lg d-flex flex-column align-items-center" style="width: 100%;">
+                <img src="https://images.unsplash.com/photo-1615563164538-89e1da13fcc4?q=80&w=2073&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Imagen Conductores" style="height: 190px;">
+                Administración Conductores
+            </a>
+        </div>
     </div>
+@else
+    <div class="row">
+        <div class="col text-center">
+            <h3 class="text-danger">LO SENTIMOS, ESTA SECCIÓN ES EXCLUSIVA PARA ADMINISTRADORES  >:C  </h3>
+            <img src="https://sserial.es/wp-content/uploads/2018/05/p_2_2-Acceso-prohibido.jpg" alt="logo prohibido" style="max-width: 200PX;">
+        </div>
+    </div>
+@endif
 
 
-    <div class="col-md-6 text-center mb-3">
-        <a href="{{ route('adminDrivers.index') }}" class="btn btn-danger btn-lg d-flex flex-column align-items-center" style=" width: 100%;">
-            <img src="https://images.unsplash.com/photo-1615563164538-89e1da13fcc4?q=80&w=2073&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="Imagen Conductores" style="height: 190px;">
-            Administración Conductores
-        </a>
-    </div>
-</div>
+
 
 @stop
 

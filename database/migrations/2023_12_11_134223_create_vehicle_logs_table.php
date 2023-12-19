@@ -11,21 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('_vehicle_logs', function (Blueprint $table) {
+        Schema::create('vehicle_logs', function (Blueprint $table) {
             $table->id();
             $table->dateTime('departure_time');
             $table->string('destination');
-            $table->dateTime('entry_time');
+            $table->dateTime('entry_time')->nullable();
             $table->string('departure_km');
-            $table->string('entry_km');
+            $table->string('entry_km')->nullable();
             $table->string('mission');
-            $table->string('observation');
+            $table->string('observation')->nullable();
             $table->foreignId('GuardsOut_id');
-            $table->foreignId('GuardsIn_id');
+            $table->foreignId('GuardsIn_id')->nullable();
             $table->foreignId('Vehicle_id');
             $table->foreignId('Driver_id');
             $table->foreign('GuardsOut_id')->references('id')->on('users');
             $table->foreign('GuardsIn_id')->references('id')->on('users');
+            $table->timestamps();
         });
     }
     /**
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('_vehicle_logs');
+        Schema::dropIfExists('vehicle_logs');
     }
 };
