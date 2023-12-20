@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminDriversController;
-use App\Http\Controllers\DriverController;
+use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\NoveltyController;
 use App\Http\Controllers\PendingTaskController;
 use App\Http\Controllers\VehicleController;
@@ -80,6 +80,17 @@ Route::post('/destroyDrivers/{id}',[AdminDriversController::class,'destroy'])->m
 // ****************** AQUI TERMINA ADMIN DRIVERS ******************
 //******************************************************************* */
 
+//******************************************************************* */
+// ****************** AQUI EMPIEZA ADMIN USERS ******************
+Route::get('/adminUsers',[AdminUserController::class,'index'])->middleware('auth')-> name ('user.index');
+Route::post('/storeUsers',[AdminUserController::class,'store'])->middleware('auth')-> name ('user.store');
+Route::post('/adminUsers/edit/{id}', [AdminUserController::class, 'edit'])->middleware('auth')-> name ('user.edit');
+Route::post('/adminUsers/update/{id}', [AdminUserController::class, 'update'])->middleware('auth')->name('user.update');
+Route::post('/adminUsers/delete/{id}', [AdminUserController::class, 'delete'])->middleware('auth')->name('user.delete');
+Route::post('/adminUsers/destroy/{id}', [AdminUserController::class, 'destroy'])->middleware('auth')->name('user.destroy');
+
+// ****************** AQUI TERMINA ADMIN USERS ******************
+//******************************************************************* */
 
 
 
