@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('last_names');
             $table->string('phone');
             $table->boolean('is_admin');
+            $table->string('blood_type');
             $table->timestamps();
         });
     }
