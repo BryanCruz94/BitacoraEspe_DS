@@ -17,12 +17,8 @@ class AdminDriversController extends Controller
     {
         //
         $datos = Driver::all();
-<<<<<<< HEAD
-        return view('adminDrivers', compact('datos'));
-=======
 
         return view('adminDrivers.adminDrivers', compact('datos'));
->>>>>>> b4dd1db49d07fe1cef1be8c8b8cfa58ce233f5f2
     }
 
     /**
