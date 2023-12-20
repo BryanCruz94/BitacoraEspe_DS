@@ -61,11 +61,7 @@ Route::post('/adminVehicles/update/{id}', [VehicleController::class, 'update'])-
 Route::post('/adminVehicles/delete/{id}', [VehicleController::class, 'delete'])->middleware('auth')->name('adminVehicles.delete');
 Route::post('/adminVehicles/destroy/{id}', [VehicleController::class, 'destroy'])->middleware('auth')->name('adminVehicles.destroy');
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> b4dd1db49d07fe1cef1be8c8b8cfa58ce233f5f2
 // ****************** AQUI TERMINA ADMIN VEHICULOS ******************
 //******************************************************************* */
 
