@@ -60,6 +60,7 @@ Route::post('/adminVehicles/delete/{id}', [VehicleController::class, 'delete'])-
 Route::post('/adminVehicles/destroy/{id}', [VehicleController::class, 'destroy'])->middleware('auth')->name('adminVehicles.destroy');
 
 
+
 // ****************** AQUI TERMINA ADMIN VEHICULOS ******************
 //******************************************************************* */
 
