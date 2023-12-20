@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('identification_card');
             $table->string('last_names');
             $table->string('phone');
-            $table->string('blood_type');
             $table->boolean('is_admin');
+            $table->string('blood_type');
             $table->timestamps();
         });
     }

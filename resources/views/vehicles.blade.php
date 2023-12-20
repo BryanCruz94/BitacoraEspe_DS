@@ -29,6 +29,16 @@
         <div class="col ">
             {{-- TABLA SUPERIOR --}}
             <div class="card">
+                <div id='alertaMensaje'>
+                    @if (session('message'))
+                        <div class="alert alert-{{ session('type') }}">
+                            <strong>{{ session('message') }}</strong>
+                        </div>
+                        @php
+                            session()->forget('message');
+                        @endphp
+                    @endif
+                </div>
 
                 <div class="card-header text-center" style="padding:0; padding-top:3px">
                     <div>
@@ -37,7 +47,6 @@
                     <div class="card-tools" style=" ">
                     </div>
                 </div>
-
                 <div class="card-body table-responsive pl-2 pr-2">
                     <table id="movVehiclesTable" class="table table-hover text-nowrap">
                         <thead>
@@ -57,68 +66,50 @@
 
                             </tr>
                         </thead>
+                        {{ $i = 1 }}
                         <tbody>
-                            {{-- @foreach ($registros1 as $item)
-                    <tr>
-                        <td>
-                            {{ $item->PLACA }}
-                        </td>
-                        <td style="max-width: 800px; min-width: 200px;
-                        white-space: normal;">
-                            {{ $item->DESCRIPCION }}
-                        </td>
-                        <td>
-                            {{ $item->REGISTRO }}
-                        </td>
-                        <td>
-                            {{ $item->FECHAHORASALIDA }}
-                        </td>
-                    </tr>
-                @endforeach --}}
-
-                            {{-- MEDIANTE UN CICLO FOR CREAR 4 FILAS CON 4 COLUMNAS CADA UNA --}}
-                            @for ($i = 0; $i < 15; $i++)
+                            @foreach ($vehicleLog as $item)
                                 <tr>
-                                    <td class="text-center">
-                                        {{ $i + 1 }}
+                                    <td>
+                                        {{ $i++ }}
                                     </td>
-                                    <td
-                                        style="max-width: 800px; min-width: 200px;
-                        white-space: normal;">
-                                        -
+                                    <td>
+                                        {{ $item->plate }}
                                     </td>
-                                    <td class="text-center">
-                                        PEC-7720
+                                    <td>
+                                        {{ $item->description }}
                                     </td>
-                                    <td class="text-center">
-                                        -
+                                    <td>
+                                        {{ $item->driver }}
                                     </td>
-                                    <td class="text-center">
-                                        -
+                                    <td>
+                                        {{ $item->departure_time }}
                                     </td>
-                                    <td class="text-center">
-                                        -
+                                    <td>
+                                        {{ $item->entry_time }}
                                     </td>
-                                    <td class="text-center">
-                                        -
+                                    <td>
+                                        {{ $item->destination }}
                                     </td>
-                                    <td class="text-center">
-                                        -
+                                    <td>
+                                        {{ $item->mission }}
                                     </td>
-                                    <td class="text-center">
-                                        -
+                                    <td>
+                                        {{ $item->observation }}
                                     </td>
-                                    <td class="text-center">
-                                        -
+                                    <td>
+                                        {{ $item->totalKm }}
                                     </td>
-                                    <td class="text-center">
-                                        -
+                                    <td>
+                                        {{ $item->guardOut }}
                                     </td>
-                                    <td class="text-center">
-                                        -
+                                    <td>
+                                        {{ $item->guardIn }}
                                     </td>
                                 </tr>
-                            @endfor
+                            @endforeach
+
+
                         </tbody>
                     </table>
 
@@ -127,7 +118,6 @@
             </div>
 
             {{-- TABLA INFERIOR --}}
-
             <div class="card">
 
                 <div class="card-header text-center" style="padding:0; padding-top:3px">
@@ -154,36 +144,35 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for ($i = 0; $i < 3; $i++)
+                            {{ $j = 1 }}
+                            @foreach ($vehiclesOut as $vehicle)
                                 <tr>
-                                    <td class="text-center">
-                                        {{ $i + 1 }}
+                                    <td>
+                                        {{ $j++ }}
                                     </td>
-                                    <td
-                                        style="max-width: 800px; min-width: 200px;
-                        white-space: normal;">
-                                        -
+                                    <td>
+                                        {{ $vehicle->plate }}
                                     </td>
-                                    <td class="text-center">
-                                        PEC-7720
+                                    <td>
+                                        {{ $vehicle->description }}
                                     </td>
-                                    <td class="text-center">
-                                        -
+                                    <td>
+                                        {{ $vehicle->driver }}
                                     </td>
-                                    <td class="text-center">
-                                        -
+                                    <td>
+                                        {{ $vehicle->departure_time }}
                                     </td>
-                                    <td class="text-center">
-                                        -
+                                    <td>
+                                        {{ $vehicle->destination }}
                                     </td>
-                                    <td class="text-center">
-                                        -
+                                    <td>
+                                        {{ $vehicle->mission }}
                                     </td>
-                                    <td class="text-center">
-                                        -
+                                    <td>
+                                        {{ $vehicle->guardOut }}
                                     </td>
-                                </tr>
-                            @endfor
+                            @endforeach
+
                         </tbody>
                     </table>
 
@@ -204,7 +193,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="#" method="POST">
+                <form action="{{ route('vehiclesLog.store') }}" method="POST">
                     @csrf
                     <div class="modal-body">
 
@@ -214,12 +203,11 @@
                                     <label for="plateOut">Placa: </label>
                                     {{-- CREAR UN INPUT SELECT CON 6 OPCIONES --}}
                                     <select name="plateOut" id="plateOut" class="form-control">
-                                        <option value="1">PEC-7720</option>
-                                        <option value="2">PEC-7721</option>
-                                        <option value="3">PEC-7722</option>
-                                        <option value="4">PEC-7723</option>
-                                        <option value="5">PEC-7724</option>
-                                        <option value="6">PEC-7725</option>
+                                        @foreach ($vehicles as $vehicle)
+                                            @if ($vehicle->in_university == 1)
+                                                <option value="{{ $vehicle->id }}">{{ $vehicle->plate }}</option>
+                                            @endif
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -228,10 +216,11 @@
                                 <div class="form-group">
                                     <label for="driverForm">Conductor: </label>
                                     {{-- CREAR UN INPUT SELECT CON 6 OPCIONES --}}
-                                    <select name="driverForm" id="driverForm" class="form-control">
-                                        <option value="1">SGOS SANGUCHO LUIS</option>
-                                        <option value="2">SGOS SANGUCHO LUIS</option>
-                                        <option value="3">SGOS SANGUCHO LUIS</option>
+                                    <select name="Driver_id" id="Driver_id" class="form-control">
+                                        @foreach ($drivers as $driver)
+                                            <option value="{{ $driver->id }}">{{ $driver->rank->name }}
+                                                {{ $driver->names }} {{ $driver->last_names }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -245,8 +234,8 @@
 
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="mileageOut">KM Salida: </label>
-                                    <input type="text" name="mileageOut" id="mileageOut" class="form-control">
+                                    <label for="departure_km">KM Salida: </label>
+                                    <input type="number" name="departure_km" id="departure_km" class="form-control">
 
                                 </div>
                             </div>
@@ -279,7 +268,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="#" method="POST">
+                <form action="{{ route('vehiclesLog.update') }}" method="POST">
                     @csrf
                     <div class="modal-body">
 
@@ -289,16 +278,20 @@
                                     <label for="plateIn">Placa: </label>
                                     {{-- CREAR UN INPUT SELECT CON 6 OPCIONES --}}
                                     <select name="plateIn" id="plateIn" class="form-control">
-                                        <option value="1">PEC-7720</option>
-                                        
+                                        @foreach ($vehicles as $vehicle)
+                                            @if ($vehicle->in_university == 0)
+                                                <option value="{{ $vehicle->id }}">{{ $vehicle->plate }}</option>
+                                            @endif
+                                        @endforeach
+
                                     </select>
                                 </div>
                             </div>
 
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="mileageIn">KM Ingreso: </label>
-                                    <input type="text" name="mileageIn" id="mileageIn" class="form-control">
+                                    <label for="entry_km">KM Ingreso: </label>
+                                    <input type="number" name="entry_km" id="entry_km" class="form-control">
 
                                 </div>
                             </div>
@@ -336,6 +329,12 @@
                 url: 'https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json'
             },
             "searching": true
+        });
+
+        $(document).ready(function() {
+            setTimeout(function() {
+                $('#alertaMensaje').fadeOut('fast');
+            }, 3000);
         });
     </script>
 @stop

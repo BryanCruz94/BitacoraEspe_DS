@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('last_names');
             $table->string('phone');
             $table->string('blood_type');
-            $table->string('license_number');
-            $table->string('img_url');
+            $table->string('license_type');
+            $table->string('img_url')->nullable();
             $table->foreign('rank_id')->references('id')->on('ranks');
             $table->timestamps();
         });
