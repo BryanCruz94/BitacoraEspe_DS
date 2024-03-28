@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('phone');
             $table->string('blood_type');
             $table->string('license_type');
-            $table->string('img_url')->nullable();
+            $table->string('img');
             $table->foreign('rank_id')->references('id')->on('ranks');
             $table->timestamps();
         });

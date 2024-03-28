@@ -6,7 +6,7 @@ use App\Models\adminDrivers;
 use App\Models\Driver;
 use App\Models\Rank;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+
 
 class AdminDriversController extends Controller
 {
@@ -45,12 +45,12 @@ class AdminDriversController extends Controller
         $drivers->blood_type  = $request->post('blood_type');
         $drivers->license_type = $request->post('license_type');
         // Obtener el archivo de la solicitud
-        $file = $request->file('img_url');
+        $file = $request->file('img');
 
         if ($file !== null) {
             if ($file->isValid()) {
                 $imagenPath = $file->store('public/imagenes');
-                $drivers->img_url = $imagenPath;
+                $drivers->img = $imagenPath;
             } else {
                 return response()->json(['error' => 'La carga del archivo no es válida'], 400);
             }
@@ -95,12 +95,12 @@ class AdminDriversController extends Controller
           $drivers->blood_type  = $request->post('blood_type');
           $drivers->license_type = $request->post('license_type');
           // Obtener el archivo de la solicitud
-          $file = $request->file('img_url');
+          $file = $request->file('img');
 
           if ($file !== null) {
               if ($file->isValid()) {
                   $imagenPath = $file->store('public/imagenes');
-                  $drivers->img_url = $imagenPath;
+                  $drivers->img = $imagenPath;
               } else {
                   return response()->json(['error' => 'La carga del archivo no es válida'], 400);
               }

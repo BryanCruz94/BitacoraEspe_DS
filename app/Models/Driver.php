@@ -17,11 +17,12 @@ class Driver extends Model
         "phone",
         "blood_type",
         "rank_id",
+        "img"
     ];
 
     public function rank(){
         return $this->belongsTo(Rank::class);
-    }	
+    }
 }
 
 

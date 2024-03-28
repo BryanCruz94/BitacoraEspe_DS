@@ -53,7 +53,7 @@ Route::post('/vehicles/updateVehicleLog', [VehicleLogController::class,'update']
 
 //******************************************************************* */
 // ****************** AQUI EMPIEZA ADMIN VEHICULOS ******************
-Route::get('/adminVehicles',[VehicleController::class,'index'])-> name ('vehicle.index');
+Route::get('/adminVehicles',[VehicleController::class,'index'])->middleware('auth')-> name ('vehicle.index');
 
 Route::post('/store',[VehicleController::class,'store'])->middleware('auth')-> name ('vehicle.store');
 Route::post('/adminVehicles/edit/{id}', [VehicleController::class, 'edit'])->middleware('auth')-> name ('adminVehicles.edit');

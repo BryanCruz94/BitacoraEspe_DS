@@ -316,11 +316,11 @@ return [
             'url'  => 'binnacle',
             'icon' => 'fas fa-fw fa-book-open',
         ],
-        // [
-        //     'text' => 'MOVIMIENTO VEHICULAR',
-        //     'url'  => 'vehicles',
-        //     'icon' => 'fas fa-fw fa-lock',
-        // ],
+        [
+            'text' => 'MOVIMIENTO VEHICULAR',
+            'url'  => 'vehicles',
+            'icon' => 'fas fa-fw fa-lock',
+        ],
         [
             'text' => 'CONSIGNAS',
             'url'  => 'pendings',

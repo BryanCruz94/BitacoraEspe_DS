@@ -63,7 +63,7 @@
                             <td>{{ $item->phone }}</td>
                             <td>{{ $item->blood_type }}</td>
                             <td>{{ $item->license_type }}</td>
-                            <td><img src="{{Storage::url($item->img_url) }}" alt="user" width="70px" height="70px">
+                            <td><img src="{{Storage::url($item->img) }}" alt="user" width="60px" height="60px">
                             </td>
                             <td>
                                 <form action="{{ route('drivers.edit', $item->id) }}" method="post">
@@ -76,7 +76,7 @@
                             </td>
                             <td>
 
-                                <form action="{{ route('drivers.destroy', $item->id)}}" method="post">
+                                <form action="{{ route('drivers.destroy', $item->id)}}" method="post" onsubmit="return confirmarEli()">
                                     @csrf
                                     <button class="btn btn-danger btn-sm">
                                         <span class="fas fa-user-times"></span>

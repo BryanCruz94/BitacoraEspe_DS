@@ -16,6 +16,7 @@ class adminDrivers extends Model
         "phone",
         "blood_type",
         "rank_id",
+        "img",
         "created_by",
         "updated_by",
         "deleted_by"
