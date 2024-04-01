@@ -16,7 +16,11 @@ class AdminDriversController extends Controller
     public function index()
     {
         //
-        $datos = Driver::all();
+        $datos = Driver::join('ranks', 'drivers.rank_id', '=', 'ranks.code')
+        ->select('drivers.*', 'ranks.name')
+        ->orderBy('drivers.is_active', 'desc')
+        ->orderBy('drivers.last_names', 'asc')
+        ->get();
 
         return view('adminDrivers.adminDrivers', compact('datos'));
     }
@@ -44,6 +48,8 @@ class AdminDriversController extends Controller
         $drivers->phone = $request->post('phone');
         $drivers->blood_type  = $request->post('blood_type');
         $drivers->license_type = $request->post('license_type');
+        $drivers->is_active = true;
+
         // Obtener el archivo de la solicitud
         $file = $request->file('img');
 
@@ -94,7 +100,9 @@ class AdminDriversController extends Controller
           $drivers->phone = $request->post('phone');
           $drivers->blood_type  = $request->post('blood_type');
           $drivers->license_type = $request->post('license_type');
-          // Obtener el archivo de la solicitud
+          $drivers->rank_id = $request->post('rank_id');
+          $drivers->is_active = $request->has('is_active');
+          $drivers->updated_at = now();
           $file = $request->file('img');
 
           if ($file !== null) {
@@ -123,7 +131,8 @@ class AdminDriversController extends Controller
     public function destroy($id)
     {
         $drivers = Driver::find($id);
-        $drivers->delete();
+        $drivers->is_active = false;
+        $drivers->save();
         echo "Eliminado con éxito";
 
         return redirect()->route("drivers.index");

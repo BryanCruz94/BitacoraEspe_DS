@@ -18,6 +18,7 @@ return new class extends Migration
             $table->boolean('in_university');
             $table->string('img_url')->nullable();
             $table->timestamps();
+            $table->boolean('is_active');
         });
     }
 

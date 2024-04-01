@@ -38,11 +38,12 @@
                         <thead>
                             <tr>
                                 <th class="text-center">ORD</th>
-                                <th class="text-center">NOMBRE Y APELLIDO</th>
-                                <th class="text-center">CORREO ELECTRÓNICO</th>
-                                <th class="text-center">CÉDULA DE IDENTIDAD</th>
+                                <th class="text-center text-wrap">NOMBRE Y APELLIDO</th>
+                                <th class="text-center text-wrap">CORREO ELECTRÓNICO</th>
+                                <th class="text-center text-wrap">CÉDULA DE IDENTIDAD</th>
                                 <th class="text-center">CEULAR</th>
                                 <th class="text-center">TIPO SANGRE</th>
+                                <th class="text-center">ESTADO</th>
                                 <th class="text-center">ROL</th>
                                 <th class="text-center">EDITAR</th>
                                 <th class="text-center">ELIMINAR</th>
@@ -54,8 +55,8 @@
                                     <td class="text-center">
                                         {{ $i + 1 }}
                                     </td>
-                                    <td class="text-center">
-                                        {{ $dato->names }} {{ $dato->last_names }}
+                                    <td class="text-center text-wrap">
+                                        {{ $dato->last_names }} {{ $dato->names }}
                                     </td>
                                     <td class="text-center">
                                         {{ $dato->email }}
@@ -69,11 +70,20 @@
                                     <td class="text-center">
                                         {{ $dato->blood_type }}
                                     </td>
+
+                                    <td class="text-center">
+                                        @if ($dato->is_active == 1)
+                                            <span class="badge badge-success">Activo</span>
+                                        @else
+                                            <span class="badge badge-danger">Baja</span>
+                                        @endif
+                                    </td>
+
                                     <td class="text-center">
                                         @if ($dato->is_admin == 0)
-                                            <span class="badge badge-success">Usuario</span>
+                                            <span class="badge badge-primary">User</span>
                                         @else
-                                            <span class="badge badge-danger">Administrador</span>
+                                            <span class="badge badge-warning">Admin</span>
                                         @endif
                                     </td>
                                     <td class="text-center">
@@ -96,10 +106,9 @@
                                     </td>
                                 </tr>
                             @endforeach
-
-
                         </tbody>
                     </table>
+
                 </div>
             </div>
         </div>

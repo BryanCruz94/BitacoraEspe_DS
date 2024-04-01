@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('img');
             $table->foreign('rank_id')->references('id')->on('ranks');
             $table->timestamps();
+            $table->boolean('is_active');
         });
     }
 

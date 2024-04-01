@@ -12,7 +12,7 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        $datos = Vehicle::orderBy('plate')->get();
+        $datos = Vehicle::orderByDesc('is_active')->orderBy('plate')->where('is_active',true) ->get();
 
         $nombreGuarda = auth()->user()->name;
 
@@ -30,6 +30,7 @@ class VehicleController extends Controller
         $img = $request->file('img');
         $imgPath = $img->store('public/img');
         $adminVehicles->img_url = $imgPath;
+        $adminVehicles->is_active = true;
         $adminVehicles->save();
         //retornar
         return redirect()->route('vehicle.index')->with('mensaje', 'El registro se agrego de forma exitosa');
@@ -58,6 +59,7 @@ class VehicleController extends Controller
         $img = $request->file('img');
         $imgPath = $img->store('public/img');
         $adminVehicles->img_url = $imgPath;
+        $adminVehicles->updated_at = now();
         $adminVehicles->save();
         return redirect()->route('vehicle.index')->with('mensaje', 'El registro se registró de forma exitosa');
     }
@@ -70,8 +72,9 @@ class VehicleController extends Controller
     public function destroy($id)
     {
         $vehicle = Vehicle::find($id);
-
-        $vehicle->delete();
+        $vehicle->is_active = false;
+        $vehicle->updated_at = now();
+        $vehicle->save();
         return redirect()->route('vehicle.index')->with('mensaje', 'Vehículo eliminado exitosamente');
     }
 

@@ -28,25 +28,27 @@
                 </div>
 
             </div>
-            <h5>Listado de conductores</h5>
-
             <p>
-                <a href="{{ route('drivers.create') }}" class="btn btn-primary">Agregar Persona</a>
-                {{-- <a href="#" class="btn btn-primary">Agregar Persona</a> --}}
+                <a href="{{ route('drivers.create') }}" class="btn btn-primary">Agregar Conductor</a>
+
             </p>
+            <h4 class="text-center">Listado de conductores</h4>
+
+
             <table class="table table-striped table-dark">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Rango </th>
-                        <th scope="col">Identificación </th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Telefono</th>
-                        <th scope="col">Tipo de sangre</th>
-                        <th scope="col">Licencia</th>
-                        <th scope="col">Imagen</th>
-                        <th scope="col">Editar</th>
-                        <th scope="col">Eliminar</th>
+                        <th scope="col" class="text-center">#</th>
+                        <th scope="col" class="text-center">Grado </th>
+                        <th scope="col" class="text-center text-wrap">Apellidos y Nombres</th>
+                        <th scope="col" class="text-center">Identificación </th>
+                        <th scope="col" class="text-center">Telefono</th>
+                        <th scope="col" class="text-center">Tipo de sangre</th>
+                        <th scope="col" class="text-center">Licencia</th>
+                        <th scope="col" class="text-center">Imagen</th>
+                        <th scope="col" class="text-center">Estado</th>
+                        <th scope="col" class="text-center">Editar</th>
+                        <th scope="col" class="text-center">Eliminar</th>
                     </tr>
                 </thead>
                 @php
@@ -57,13 +59,20 @@
                     @foreach ($datos as $item)
                         <tr>
                             <th scope="row">{{ $i++ }}</th>
-                            <td>{{ $item->rank_id }}</td>
-                            <td>{{ $item->identification_card }}</td>
-                            <td>{{ $item->names . ' ' . $item->last_names }}</td>
-                            <td>{{ $item->phone }}</td>
-                            <td>{{ $item->blood_type }}</td>
-                            <td>{{ $item->license_type }}</td>
+                            <td class="text-center">{{ $item->name }}</td>
+                            <td class="text-center text-wrap">{{ $item->last_names . ' ' . $item->names }}</td>
+                            <td class="text-center">{{ $item->identification_card }}</td>
+                            <td class="text-center">{{ $item->phone }}</td>
+                            <td class="text-center">{{ $item->blood_type }}</td>
+                            <td class="text-center">{{ $item->license_type }}</td>
                             <td><img src="{{Storage::url($item->img) }}" alt="user" width="60px" height="60px">
+                            </td>
+                            <td class="text-center">
+                                @if ($item->is_active == 1)
+                                    <span class="badge badge-success">Activo</span>
+                                @else
+                                    <span class="badge badge-danger">Baja</span>
+                                @endif
                             </td>
                             <td>
                                 <form action="{{ route('drivers.edit', $item->id) }}" method="post">

@@ -116,6 +116,7 @@ class VehicleLogController extends Controller
         $vehicleLog->entry_km = $request->entry_km;
         $vehicleLog->observation = $request->observation;
         $vehicleLog->GuardsIn_id = auth()->user()->id;
+        $vehicleLog->update_at = Carbon::now()->setTimezone('America/Guayaquil');
 
         $novelty->hour = Carbon::now()->setTimezone('America/Guayaquil');
         $noveltyString = 'Ingreso del vehículo ' . $vehicle->description . ' con placa '

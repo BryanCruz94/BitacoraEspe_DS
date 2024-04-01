@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class DriverController extends Controller
+class ReportController extends Controller
 {
     /**
      * Display a listing of the resource.

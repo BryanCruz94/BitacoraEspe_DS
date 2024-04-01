@@ -24,6 +24,7 @@ return new class extends Migration
             $table->boolean('is_admin');
             $table->string('blood_type');
             $table->timestamps();
+            $table->boolean('is_active');
         });
     }
     /**

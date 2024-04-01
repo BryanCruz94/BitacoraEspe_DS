@@ -21,12 +21,13 @@ class UsersTableSeeder extends Seeder
                 'email_verified_at' => now(),
                 'password' => Hash::make('password'),
                 'identification_card'=> '2350769275',
-                'last_names'=> 'Caicedo', 
+                'last_names'=> 'Caicedo',
                 'phone' => '0967749844',
                 'blood_type' => 'B+',
                 'is_admin'=> true,
                 'created_at' => now(),
-                'updated_at' => now()
+                'updated_at' => now(),
+                'is_active' => true,
             ],
             [
                 'names' => 'Bryan',
@@ -34,12 +35,13 @@ class UsersTableSeeder extends Seeder
                 'email_verified_at' => now(),
                 'password' => Hash::make('password'),
                 'identification_card'=> '1718324765',
-                'last_names'=> 'Cruz', 
+                'last_names'=> 'Cruz',
                 'phone' => '0959113863',
                 'blood_type' => 'A+',
                 'is_admin'=> true,
                 'created_at' => now(),
-                'updated_at' => now()
+                'updated_at' => now(),
+                'is_active' => true,
             ],
             [
                 'names' => 'Leonardo',
@@ -47,12 +49,13 @@ class UsersTableSeeder extends Seeder
                 'email_verified_at' => now(),
                 'password' => Hash::make('password'),
                 'identification_card'=> '1755605688',
-                'last_names'=> 'Flores', 
+                'last_names'=> 'Flores',
                 'phone' => '0969734638',
                 'blood_type' => 'A+',
                 'is_admin'=> true,
                 'created_at' => now(),
-                'updated_at' => now()
+                'updated_at' => now(),
+                'is_active' => true,
             ],
         ];
 

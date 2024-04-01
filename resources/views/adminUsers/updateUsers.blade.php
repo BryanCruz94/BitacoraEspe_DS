@@ -73,7 +73,7 @@
                     </div>
 
 
-                    <div class="col-4">
+                    <div class="col-3">
                         <div class="form-group">
                             <label for="phone">Celular: </label>
                             <input type="text" name="phone" id="phone" class="form-control"
@@ -81,7 +81,7 @@
                         </div>
                     </div>
 
-                    <div class="col-4">
+                    <div class="col-3">
                         <div class="form-group">
                             <label for="blood_type">Tipo de Sangre:</label>
                             <select name="blood_type" id="blood_type" required>
@@ -98,13 +98,19 @@
                     </div>
 
 
-                    <div class="col-4">
+                    <div class="col-3">
                         <div class="form-group">
                             <label for="is_admin">Administrador: </label>
                             <input type="checkbox" name="is_admin" id="is_admin" class="form-control">
                         </div>
                     </div>
 
+                    <div class="col-3">
+                        <div class="form-group">
+                            <label for="is_active">Activo: </label>
+                            <input type="checkbox" name="is_active" id="is_active" class="form-control">
+                        </div>
+                    </div>
 
                 </div>
             </div>

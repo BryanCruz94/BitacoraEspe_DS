@@ -66,7 +66,9 @@
 
                             </tr>
                         </thead>
-                        {{ $i = 1 }}
+
+                        <div style="display: none"> {{ $i = 1 }} </div>
+
                         <tbody>
                             @foreach ($vehicleLog as $item)
                                 <tr>
@@ -144,7 +146,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{ $j = 1 }}
+                            <div style="display: none"> {{ $j = 1 }} </div>
                             @foreach ($vehiclesOut as $vehicle)
                                 <tr>
                                     <td>
@@ -204,7 +206,7 @@
                                     {{-- CREAR UN INPUT SELECT CON 6 OPCIONES --}}
                                     <select name="plateOut" id="plateOut" class="form-control">
                                         @foreach ($vehicles as $vehicle)
-                                            @if ($vehicle->in_university == 1)
+                                            @if ($vehicle->in_university == 1 && $vehicle->is_active == 1)
                                                 <option value="{{ $vehicle->id }}">{{ $vehicle->plate }}</option>
                                             @endif
                                         @endforeach
@@ -215,11 +217,12 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="driverForm">Conductor: </label>
-                                    {{-- CREAR UN INPUT SELECT CON 6 OPCIONES --}}
                                     <select name="Driver_id" id="Driver_id" class="form-control">
                                         @foreach ($drivers as $driver)
-                                            <option value="{{ $driver->id }}">{{ $driver->rank->name }}
-                                                {{ $driver->names }} {{ $driver->last_names }}</option>
+                                            @if ($driver->is_active == 1)
+                                                <option value="{{ $driver->id }}">{{ $driver->rank->name }}
+                                                    {{ $driver->names }} {{ $driver->last_names }}</option>
+                                            @endif
                                         @endforeach
                                     </select>
                                 </div>

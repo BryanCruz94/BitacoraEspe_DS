@@ -81,8 +81,15 @@
 
         <div class="form-group">
             <label for="img" class="text-success">Ingrese su imagen: </label>
-            <input type="file" name="img" class="form-control" required>
+            <input type="file" name="img" class="form-control">
         </div>
+
+
+        <div class="form-group">
+            <label for="is_active" class="text-success">Activo: </label>
+            <input type="checkbox" name="is_active" id="is_active" class="form-control" checked >
+        </div>
+
 
         <div class="p-4 bg-white rounded shadow-sm mx-auto" style="max-width: 400px;">
             <div class="form-group d-flex justify-content-between">

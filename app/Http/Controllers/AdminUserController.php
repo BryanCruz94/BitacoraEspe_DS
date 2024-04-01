@@ -14,7 +14,8 @@ class AdminUserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        //$users = User::all();
+        $users = User::orderByDesc('is_active')->orderBy('last_names')->get();
         return view('adminUsers.adminUsers', compact('users'));
     }
 
@@ -42,6 +43,8 @@ class AdminUserController extends Controller
         $user->phone = $request->post('phone');
         $user->blood_type = $request->post('blood_type');
         $user->is_admin = $request->has('is_admin');
+        $user->is_active = true;
+        $user->email_verified_at = now();
 
 
         if ($password == $passwordVerify) {
@@ -100,6 +103,9 @@ class AdminUserController extends Controller
         $user->phone = $request->post('phone');
         $user->blood_type = $request->post('blood_type');
         $user->is_admin = $request->has('is_admin');
+        $user->is_active = $request->has('is_active');
+        $user->email_verified_at = now();
+        $user->updated_at = now();
         $user->save();
         return redirect()->route('user.index');
     }
@@ -113,8 +119,8 @@ class AdminUserController extends Controller
     public function destroy(string $id)
     {
         $user = User::find($id);
-
-        $user->delete();
-        return redirect()->route('user.index')->with('mensaje', 'Vehículo eliminado exitosamente');
+        $user->is_active = false;
+        $user->save();
+        return redirect()->route('user.index')->with('mensaje', 'Usuario eliminado exitosamente');
     }
 }

@@ -325,13 +325,19 @@ return [
             'text' => 'CONSIGNAS',
             'url'  => 'pendings',
             'icon' => 'fas fa-fw fa-book-open',
+            'icon_color' => 'blue'
+        ],
+        [
+            'text' => 'REPORTES',
+            'url'  => 'reports',
+            'icon' => 'fas fa-fw fa-file',
             'icon_color' => 'red'
         ],
         [
             'text' => 'ADMINISTRADOR',
             'url'  => 'admin',
             'icon' => 'fas fa-fw fa-file',
-            'icon_color' => 'red',
+            'icon_color' => 'green',
            // 'can'  => 'view-admin-section'
         ],
 

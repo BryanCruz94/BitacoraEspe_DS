@@ -10,10 +10,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('prueba', function () {
-    return DB::select("select * from view_novelties;");
-
-});
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,6 +24,10 @@ Route::get('/admin', function () {
     return view('admin');
 })->middleware('auth');
 
+// Ruta para abrir la vista REPORTES
+Route::get('/reports', function () {
+    return view('reports.indexReports');
+})->middleware('auth');
 
 
 
@@ -93,6 +93,11 @@ Route::post('/adminUsers/destroy/{id}', [AdminUserController::class, 'destroy'])
 //*********************** */
 
 
+//*********************** */
+// ****** AQUI EMPIEZA REPORTES *********
+
+
+// ****** AQUI TERMINA REPORTES ******
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
 
