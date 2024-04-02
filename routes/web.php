@@ -6,9 +6,17 @@ use App\Http\Controllers\NoveltyController;
 use App\Http\Controllers\PendingTaskController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\VehicleLogController;
-use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
+
+
+/*
+PRUEBA PARA PDF
+*/
+Route::get('/pdf', [ReportController::class,'index'])->middleware('auth')->name("report.index");
+
+/*FIN PRUEBA*/
 
 
 Route::get('/', function () {
@@ -95,7 +103,8 @@ Route::post('/adminUsers/destroy/{id}', [AdminUserController::class, 'destroy'])
 
 //*********************** */
 // ****** AQUI EMPIEZA REPORTES *********
-
+Route::post('/reports/vehicles',[ReportController::class,'generateReportVehicles'])->middleware('auth')-> name ('report.vehicles');
+Route::post('/reports/novelties',[ReportController::class,'generateReportNovelties'])->middleware('auth')-> name ('report.novelties');
 
 // ****** AQUI TERMINA REPORTES ******
 

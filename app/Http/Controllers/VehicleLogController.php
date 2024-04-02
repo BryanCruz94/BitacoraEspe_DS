@@ -23,7 +23,6 @@ class VehicleLogController extends Controller
         $vehiclesOut = DB::table('view_vehiclesout')->get();
 
         $vehicles = Vehicle::all();
-        // $drivers = Driver::with(['rank' => fn ($query) => $query->orderBy('name')])->get() ;
         $drivers = Driver::with('rank')->orderBy('rank_id')->get();
 
 
@@ -106,7 +105,7 @@ class VehicleLogController extends Controller
         $novelty = new Novelty();
         // Obtener el último registro de VehicleLog con el valor de Vehicle_id proporcionado
         $vehicleLog = VehicleLog::where('Vehicle_id', $plateIn)
-            ->orderBy('entry_time', 'desc')
+            ->orderBy('departure_time', 'desc')
             ->first();
         $driver = Driver::find($vehicleLog->Driver_id);
 
@@ -116,13 +115,13 @@ class VehicleLogController extends Controller
         $vehicleLog->entry_km = $request->entry_km;
         $vehicleLog->observation = $request->observation;
         $vehicleLog->GuardsIn_id = auth()->user()->id;
-        $vehicleLog->update_at = Carbon::now()->setTimezone('America/Guayaquil');
+        $vehicleLog->updated_at = Carbon::now()->setTimezone('America/Guayaquil');
 
         $novelty->hour = Carbon::now()->setTimezone('America/Guayaquil');
         $noveltyString = 'Ingreso del vehículo ' . $vehicle->description . ' con placa '
             . $vehicle->plate . ' desde ' . $vehicleLog->destination
-            . ', se encontraba realizando: ' . $vehicleLog->mission . ' con el conductor '
-            . $driver->names . ' ' . $driver->last_names;
+            . ', se encontraba realizando: ' . $vehicleLog->mission . '. Con el conductor '
+            . $driver->names . ' ' . $driver->last_names . '. Observaciones: ' . $request->observation;
         $novelty->Guard_id = auth()->user()->id;
         $novelty->novelty = $noveltyString;
 
