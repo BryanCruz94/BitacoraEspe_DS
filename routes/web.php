@@ -11,15 +11,12 @@ use Illuminate\Support\Facades\Route;
 
 
 
-/*
-PRUEBA PARA PDF
-*/
-Route::get('/pdf', [ReportController::class,'index'])->middleware('auth')->name("report.index");
-
-/*FIN PRUEBA*/
-
 
 Route::get('/', function () {
+    return view('welcome');
+})->middleware('auth');
+
+Route::get('/home', function () {
     return view('welcome');
 })->middleware('auth');
 
@@ -108,9 +105,5 @@ Route::post('/reports/novelties',[ReportController::class,'generateReportNovelti
 
 // ****** AQUI TERMINA REPORTES ******
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
 
-
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();

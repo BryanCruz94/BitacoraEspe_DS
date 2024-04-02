@@ -145,14 +145,14 @@
                     </button>
                 </div>
                 <form action="{{ route('pendding.store') }}" method="POST">
-                    @csrf 
+                    @csrf
                     <div class="modal-body">
 
                         <div id="modificarRegistro" class="row mt-3" style="">
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="newPendding">Detalle la consigna:</label>
-                                    <textarea name="newPendding" id="newPendding" class="form-control" rows="3"></textarea>
+                                    <textarea name="newPendding" id="newPendding" class="form-control" rows="3" required></textarea>
                                 </div>
                             </div>
 

@@ -92,7 +92,7 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="novelty">Detalle la novedad: </label>
-                                    <textarea name="novelty" id="novelty" class="form-control" rows="3"></textarea>
+                                    <textarea name="novelty" id="novelty" class="form-control" rows="3" required></textarea>
                                 </div>
                             </div>
 

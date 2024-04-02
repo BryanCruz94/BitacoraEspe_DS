@@ -231,14 +231,14 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="destination">Destino: </label>
-                                    <input type="text" name="destination" id="destination" class="form-control">
+                                    <input type="text" name="destination" id="destination" class="form-control" required>
                                 </div>
                             </div>
 
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="departure_km">KM Salida: </label>
-                                    <input type="number" name="departure_km" id="departure_km" class="form-control">
+                                    <input type="number" name="departure_km" id="departure_km" class="form-control" required>
 
                                 </div>
                             </div>
@@ -246,7 +246,7 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="mission">Misión:</label>
-                                    <textarea name="mission" id="mission" class="form-control" rows="3"></textarea>
+                                    <textarea name="mission" id="mission" class="form-control" rows="3" required></textarea>
                                 </div>
                             </div>
 
@@ -294,7 +294,7 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="entry_km">KM Ingreso: </label>
-                                    <input type="number" name="entry_km" id="entry_km" class="form-control">
+                                    <input type="number" name="entry_km" id="entry_km" class="form-control" required>
 
                                 </div>
                             </div>
@@ -302,7 +302,7 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="observation">Observaciones:</label>
-                                    <textarea name="observation" id="observation" class="form-control" rows="3"></textarea>
+                                    <textarea name="observation" id="observation" class="form-control" rows="3" required></textarea>
                                 </div>
                             </div>
 

@@ -33,7 +33,7 @@
                             <div class="form-group">
                                 <label for="observations">Indíque si tuvo alguna novedad realizando la
                                     consinga:</label>
-                                <textarea name="observations" id="observations" class="form-control" rows="3"></textarea>
+                                <textarea name="observations" id="observations" class="form-control" rows="3" required></textarea>
                             </div>
                         </div>
                         <input type="hidden" name="idPenddingDone" value=>

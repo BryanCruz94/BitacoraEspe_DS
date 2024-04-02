@@ -56,9 +56,13 @@ class VehicleController extends Controller
         $adminVehicles->description = $request->post('description');
         $adminVehicles->plate = $request->post('plate');
         $adminVehicles->in_university = $request->has('in_university');
-        $img = $request->file('img');
-        $imgPath = $img->store('public/img');
-        $adminVehicles->img_url = $imgPath;
+
+        if($request->hasFile('img')){
+            $img = $request->file('img');
+            $imgPath = $img->store('public/img');
+            $adminVehicles->img_url = $imgPath;
+        }
+
         $adminVehicles->updated_at = now();
         $adminVehicles->save();
         return redirect()->route('vehicle.index')->with('mensaje', 'El registro se registró de forma exitosa');

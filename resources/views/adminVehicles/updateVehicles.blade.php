@@ -21,7 +21,7 @@
             <h3 class="text-danger text-center">MODIFICAR VEHICULO</h3>
 
         </div>
-        <form action="{{route('adminVehicles.update', $vehicle->id)}}" method="POST" enctype="multipart/form-data">
+        <form id="forUpdateVehicle" action="{{route('adminVehicles.update', $vehicle->id)}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="modal-body">
                 <div id="vehOutForm" class="row mt-3" style="">
@@ -56,7 +56,7 @@
                             <img src="{{ isset($vehicle) ? Storage::url($vehicle->img_url) : '' }}" alt="fotito"
                                 width="100">
                             <input type="file" name="img" id="img" class="form-control" rows="3"
-                                required value="{{ isset($vehicle) ? $vehicle->img_url : '' }}">
+                                 value="{{ isset($vehicle) ? $vehicle->img_url : '' }}">
                         </div>
                     </div>
                 </div>
@@ -77,8 +77,6 @@
 
 @section('js')
     <script>
-        console.log('Hi!');
-
 
         $("#adminVechicle").dataTable({
             "paging": true,
@@ -87,6 +85,43 @@
                 url: 'https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json'
             },
             "searching": true
+        });
+
+
+        $(document).ready(function() {
+            // Función para validar el formato de placa
+            function validarPlate(plate) {
+                var regex = /^(?:[A-Z]{3}-\d{4}|[A-Z]{2}\d{3}[A-Z])$/;
+                return regex.test(plate);
+            }
+
+            // Evento input en el campo de placa
+            $('#plate').on('input', function() {
+                var plateValue = $(this).val();
+
+                if (validarPlate(plateValue)) {
+                    // El valor es válido, aplicar estilo de éxito
+                    $(this).removeClass('is-invalid').addClass('is-valid');
+                } else {
+                    // El valor no es válido, aplicar estilo de error
+                    $(this).removeClass('is-valid').addClass('is-invalid');
+                }
+            });
+
+            // Evento submit en el formulario
+            $('#forUpdateVehicle').submit(function(e) {
+                e.preventDefault(); // Evitar el envío del formulario por defecto
+
+                var plateValue = $('#plate').val();
+
+                if (validarPlate(plateValue)) {
+                    // La placa es válida, permitir el envío del formulario
+                    this.submit();
+                } else {
+                    // Mostrar mensaje de error y evitar el envío del formulario
+                    alert('La placa no cumple con el formato requerido (AAA-0000 o AA000A).');
+                }
+            });
         });
     </script>
 @stop

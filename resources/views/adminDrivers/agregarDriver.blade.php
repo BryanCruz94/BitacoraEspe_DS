@@ -84,7 +84,7 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="img" class="text-success">Ingrese su imagen:</label>
+            <label for="img" class="text-success">Ingrese fotografía de la Licencia:</label>
             <input type="file" name="img" class="form-control" required>
         </div>
         <div class="p-4 bg-white rounded shadow-sm mx-auto" style="max-width: 400px;">
