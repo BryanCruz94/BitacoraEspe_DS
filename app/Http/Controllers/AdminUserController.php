@@ -48,7 +48,7 @@ class AdminUserController extends Controller
 
 
         if ($password == $passwordVerify) {
-            $user->password = Hash::make('password');
+            $user->password = Hash::make($password);
             $user->save();
             return redirect()->route('user.index');
         } else {
