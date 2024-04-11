@@ -3,6 +3,7 @@
 @section('title', 'ADMINISTRACIÓN USUARIOS')
 
 @section('content_header')
+@include('layouts.newHeader')
     <div class="row justify-content-center align-item-center">
         <div class="col text-center">
             <h1>ADMINISTRACIÓN DE USUARIO</h1>

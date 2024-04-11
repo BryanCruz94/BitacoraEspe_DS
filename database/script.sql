@@ -1,3 +1,4 @@
+-- VISTA PARA MOSTRAR LA TABLA DE NOVEDADES
 CREATE VIEW `view_novelties` AS
     SELECT
         `n`.`novelty` AS `novelty`,
@@ -9,6 +10,7 @@ CREATE VIEW `view_novelties` AS
     ORDER BY 2 DESC
     LIMIT 50;
 
+-- VISTA PARA MOSTRAR LA TABLA DE CONSIGNAS PENDIENTES
 CREATE VIEW `view_pedding_task` AS
     SELECT
         `pt`.`id` AS `id`,
@@ -22,6 +24,7 @@ CREATE VIEW `view_pedding_task` AS
         `pt`.`task_done` = 0
     ORDER BY 1;
 
+-- VISTA PARA MOSTRAR LA TABLA DE CONSINGAS REALIZADAS
 CREATE VIEW `view_task_done` AS
     SELECT
         `pt`.`pending_task` AS `pending_task`,
@@ -37,6 +40,8 @@ CREATE VIEW `view_task_done` AS
     ORDER BY 2 DESC
     LIMIT 50;
 
+
+-- VISTA PARA MOSTRAR LA TABLA DE MOVIMIENTO VEHICULAR
 CREATE VIEW `view_vehicleslog` AS
     SELECT
         `bv`.`id` AS `id`,
@@ -62,9 +67,11 @@ CREATE VIEW `view_vehicleslog` AS
         JOIN `ranks` `r` ON (`d`.`rank_id` = `r`.`id`))
         JOIN `users` `go` ON (`go`.`id` = `bv`.`GuardsOut_id`))
         LEFT JOIN `users` `gi` ON (`gi`.`id` = `bv`.`GuardsIn_id`))
-    ORDER BY '4' DESC
+    ORDER BY `bv`.`departure_time` DESC
     LIMIT 50;
 
+
+-- VISTA PARA MOSTRAR LA TABLA DE VEHICULOS FUERA DE LA UNIVERSIDAD
 CREATE VIEW `view_vehiclesout` AS
     SELECT
         `v`.`plate` AS `plate`,
@@ -75,6 +82,7 @@ CREATE VIEW `view_vehiclesout` AS
                 ' ',
                 `d`.`last_names`) AS `driver`,
         `bv`.`departure_time` AS `departure_time`,
+        `bv`.`entry_time` AS `entry_time`,
         `bv`.`destination` AS `destination`,
         `bv`.`mission` AS `mission`,
         CONCAT(`go`.`names`, ' ', `go`.`last_names`) AS `guardOut`
@@ -85,7 +93,5 @@ CREATE VIEW `view_vehiclesout` AS
         JOIN `ranks` `r` ON (`d`.`rank_id` = `r`.`id`))
         JOIN `users` `go` ON (`go`.`id` = `bv`.`GuardsOut_id`))
     WHERE
-        `v`.`in_university` = 0
-    ORDER BY '4';
-
-
+        `bv`.`entry_time` IS NULL
+    ORDER BY `bv`.`departure_time`;

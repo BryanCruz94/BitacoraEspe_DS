@@ -3,6 +3,7 @@
 @section('title', 'CONSIGNAS')
 
 @section('content_header')
+@include('layouts.newHeader')
     <div class="row justify-content-center align-item-center">
         <div class="col text-center">
             <h1>CONSIGNAS UFA-ESPE "SANTO DOMINGO"</h1>

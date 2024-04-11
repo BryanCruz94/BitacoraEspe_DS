@@ -3,6 +3,7 @@
 @section('title', 'BITÁCORA')
 
 @section('content_header')
+@include('layouts.newHeader')
     <div class="row justify-content-center align-item-center">
         <div class="col text-center">
             <h1>BITÁCORA NOVEDADES UFA-ESPE "SANTO DOMINGO"</h1>

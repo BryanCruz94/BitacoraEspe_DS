@@ -87,7 +87,7 @@ class AdminUserController extends Controller
             $passwordVerify = $request->post('password_verify');
 
             if ($password == $passwordVerify) {
-                $user->password = Hash::make('password');
+                $user->password = Hash::make($password);
             } else {
                 return redirect()->route('user.index')->with('error', 'Las contraseñas no coinciden');
             }
